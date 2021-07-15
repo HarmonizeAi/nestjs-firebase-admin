@@ -21,6 +21,16 @@ const PROVIDERS = [
 ];
 const EXPORTS = [...PROVIDERS];
 
+function getAppOrInitialize(options: FirebaseAdminModuleOptions) {
+  try {
+    const app = admin.app(options.appName);
+    //if app exists it will get here, if does not, it will throw
+    return app;
+  } catch (error) {
+    return admin.initializeApp(options, options.appName);
+  }
+}
+
 @Global()
 @Module({})
 export class FirebaseAdminCoreModule {
@@ -30,8 +40,7 @@ export class FirebaseAdminCoreModule {
       useValue: options,
     };
 
-    const app = admin.apps.length === 0 ? admin.initializeApp(options) : admin.apps[0];
-
+    const app = getAppOrInitialize(options);
     const providers = this.createProviders(app);
 
     return {
@@ -69,7 +78,7 @@ export class FirebaseAdminCoreModule {
     return PROVIDERS.map<Provider>((ProviderService) => ({
       provide: ProviderService,
       useFactory: (options: FirebaseAdminModuleOptions) => {
-        const app = admin.apps.length === 0 ? admin.initializeApp(options) : admin.apps[0];
+        const app = getAppOrInitialize(options);
         return new ProviderService(app);
       },
       inject: [FIREBASE_ADMIN_MODULE_OPTIONS],
