@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import * as admin from 'firebase-admin';
+import { FirebaseAdminModuleOptions } from '../firebase-admin.interface';
 
 @Injectable()
 export class FirebaseMessagingService implements admin.messaging.Messaging {
-  constructor(public readonly app: admin.app.App) {}
+  constructor(public readonly app: admin.app.App, options: FirebaseAdminModuleOptions) {}
 
   get messaging() {
     if (!this.app) {

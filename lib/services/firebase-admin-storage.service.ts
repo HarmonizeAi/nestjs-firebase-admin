@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import * as admin from 'firebase-admin';
 import { Bucket } from '@google-cloud/storage';
+import { FirebaseAdminModuleOptions } from '../firebase-admin.interface';
 
 @Injectable()
 export class FirebaseStorageService implements admin.storage.Storage {
-  constructor(public readonly app: admin.app.App) {}
+  constructor(public readonly app: admin.app.App, options: FirebaseAdminModuleOptions) {}
 
   get storage() {
     if (!this.app) {

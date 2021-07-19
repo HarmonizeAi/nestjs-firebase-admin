@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import * as admin from 'firebase-admin';
+import { FirebaseAdminModuleOptions } from '../firebase-admin.interface';
 
 @Injectable()
 export class FirebaseFirestoreService implements FirebaseFirestore.Firestore {
-  constructor(public readonly app: admin.app.App) {}
+  constructor(public readonly app: admin.app.App, options: FirebaseAdminModuleOptions) {
+    console.log('created FirebaseFirestoreService');
+  }
 
   get firestore() {
     if (!this.app) {

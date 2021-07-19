@@ -47,7 +47,7 @@ export class FirebaseAdminCoreModule {
     };
 
     const app = getAppOrInitialize(options);
-    const providers = this.createProviders(app);
+    const providers = this.createProviders(app, options);
 
     return {
       module: FirebaseAdminCoreModule,
@@ -56,10 +56,10 @@ export class FirebaseAdminCoreModule {
     };
   }
 
-  private static createProviders(app: admin.app.App): Provider<any>[] {
+  private static createProviders(app: admin.app.App, options: FirebaseAdminModuleOptions): Provider<any>[] {
     return PROVIDERS.map<Provider>((ProviderService) => ({
       provide: ProviderService,
-      useFactory: () => new ProviderService(app),
+      useFactory: () => new ProviderService(app, options),
     }));
   }
 
@@ -85,7 +85,7 @@ export class FirebaseAdminCoreModule {
       provide: ProviderService,
       useFactory: (options: FirebaseAdminModuleOptions) => {
         const app = getAppOrInitialize(options);
-        return new ProviderService(app);
+        return new ProviderService(app, options);
       },
       inject: [FIREBASE_ADMIN_MODULE_OPTIONS],
     }));
