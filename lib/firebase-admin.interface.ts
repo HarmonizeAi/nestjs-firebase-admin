@@ -3,6 +3,7 @@ import { ModuleMetadata } from '@nestjs/common/interfaces';
 
 export interface FirebaseAdminModuleOptions extends admin.AppOptions {
   appName: string;
+  firestoreSettings?: FirebaseFirestore.Settings;
 }
 
 export interface FirebaseAdminModuleAsyncOptions extends Pick<ModuleMetadata, 'imports'> {

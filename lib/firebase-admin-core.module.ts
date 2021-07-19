@@ -27,7 +27,13 @@ function getAppOrInitialize(options: FirebaseAdminModuleOptions) {
     //if app exists it will get here, if does not, it will throw
     return app;
   } catch (error) {
-    return admin.initializeApp(options, options.appName);
+    const app = admin.initializeApp(options, options.appName);
+
+    if (options.firestoreSettings != null) {
+      app.firestore().settings(options.firestoreSettings);
+    }
+
+    return app;
   }
 }
 
