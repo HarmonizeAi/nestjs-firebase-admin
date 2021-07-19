@@ -5,7 +5,7 @@ import { FirebaseAdminModuleOptions } from '../firebase-admin.interface';
 
 @Injectable()
 export class FirebaseStorageService implements admin.storage.Storage {
-  constructor(public readonly app: admin.app.App, options: FirebaseAdminModuleOptions) {}
+  constructor(public readonly app: admin.app.App) {}
 
   get storage() {
     if (!this.app) {

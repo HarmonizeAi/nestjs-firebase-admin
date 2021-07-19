@@ -4,7 +4,7 @@ import { FirebaseAdminModuleOptions } from '../firebase-admin.interface';
 
 @Injectable()
 export class FirebaseMessagingService implements admin.messaging.Messaging {
-  constructor(public readonly app: admin.app.App, options: FirebaseAdminModuleOptions) {}
+  constructor(public readonly app: admin.app.App) {}
 
   get messaging() {
     if (!this.app) {

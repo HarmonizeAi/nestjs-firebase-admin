@@ -4,7 +4,7 @@ import { FirebaseAdminModuleOptions } from '../firebase-admin.interface';
 
 @Injectable()
 export class FirebaseAuthenticationService implements admin.auth.Auth {
-  constructor(public readonly app: admin.app.App, options: FirebaseAdminModuleOptions) {}
+  constructor(public readonly app: admin.app.App) {}
 
   get auth() {
     if (!this.app) {

@@ -4,7 +4,7 @@ import { FirebaseAdminModuleOptions } from '../firebase-admin.interface';
 
 @Injectable()
 export class FirebaseRemoteConfigService implements admin.remoteConfig.RemoteConfig {
-  constructor(public readonly app: admin.app.App, options: FirebaseAdminModuleOptions) {}
+  constructor(public readonly app: admin.app.App) {}
 
   get remoteConfig() {
     if (!this.app) {

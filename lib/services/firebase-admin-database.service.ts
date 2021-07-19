@@ -6,7 +6,7 @@ import { FirebaseAdminModuleOptions } from '../firebase-admin.interface';
 @Injectable()
 export class FirebaseDatabaseService implements admin.database.Database {
   app: FirebaseApp;
-  constructor(public readonly _app: admin.app.App, options: FirebaseAdminModuleOptions) {}
+  constructor(public readonly _app: admin.app.App) {}
 
   get database() {
     if (!this._app) {
