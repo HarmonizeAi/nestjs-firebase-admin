@@ -4,9 +4,7 @@ import { FirebaseAdminModuleOptions } from '../firebase-admin.interface';
 
 @Injectable()
 export class FirebaseFirestoreService implements FirebaseFirestore.Firestore {
-  constructor(public readonly app: admin.app.App) {
-    console.log('created FirebaseFirestoreService');
-  }
+  constructor(public readonly app: admin.app.App) {}
 
   get firestore() {
     if (!this.app) {
