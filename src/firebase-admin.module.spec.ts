@@ -1,15 +1,16 @@
 import { Test } from '@nestjs/testing';
 import { FirebaseAdminModule } from './firebase-admin.module';
 import { FirebaseFirestoreService } from './services';
+import * as admin from "firebase-admin"
 
 describe('FirebaseAdminModule', () => {
-  describe('forRoot', () => {
-    it('should create', async () => {
+  describe('forRoot run', () => {
+    it('should create a module', async () => {
       const moduleRef = await Test.createTestingModule({
         imports: [
           FirebaseAdminModule.forRoot({
             projectId: 'nestjs-firebase-admin-for-test',
-            appName: 'app1',
+            appName: 'app1'
           }),
         ],
       }).compile();
@@ -46,8 +47,8 @@ describe('FirebaseAdminModule', () => {
     });
   });
 
-  describe('forRootAsync', () => {
-    it('should create', async () => {
+  describe('forRootAsync run', () => {
+    it('should create a module', async () => {
       const moduleRef = await Test.createTestingModule({
         imports: [
           FirebaseAdminModule.forRootAsync({

@@ -1,17 +1,39 @@
+// {
+//   "compilerOptions": {
+//     "module": "commonjs",
+//     "declaration": true,
+//     "noImplicitAny": false,
+//     "removeComments": true,
+//     "noLib": false,
+//     "emitDecoratorMetadata": true,
+//     "experimentalDecorators": true,
+//     "target": "es6",
+//     "sourceMap": false,
+//     "outDir": "./dist",
+//     "skipLibCheck": true
+//   },
+//   "include": ["src/**/*"],
+//   "exclude": ["node_modules", "**/*.spec.ts"]
+// }
+
 {
+  "include": ["./src/**/*.ts"],
+  "exclude": ["./src/**/__tests__", "./src/**/*.test.ts"],
   "compilerOptions": {
+    "lib": ["es2019"],
     "module": "commonjs",
-    "declaration": true,
-    "noImplicitAny": false,
-    "removeComments": true,
-    "noLib": false,
+    "target": "es2019",
+
+    "rootDir": "./src",
+    "outDir": "dist",
+
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es6",
-    "sourceMap": false,
-    "outDir": "./dist",
-    "skipLibCheck": true
-  },
-  "include": ["lib/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+    "strict": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true
+  }
 }

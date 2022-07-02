@@ -10,6 +10,7 @@ import {
   FirebaseFirestoreService,
   FirebaseStorageService,
 } from './services';
+import { AppOptions } from 'firebase-admin';
 
 const PROVIDERS = [
   FirebaseAuthenticationService,
@@ -27,10 +28,13 @@ function getAppOrInitialize(options: FirebaseAdminModuleOptions) {
     //if app exists it will get here, if does not, it will throw
     return app;
   } catch (error) {
-    const app = admin.initializeApp(options, options.appName);
+    const { firestoreSettings, appName, ...appOptions } = options
+    const app = admin.initializeApp(appOptions, appName);
 
-    if (options.firestoreSettings != null) {
-      app.firestore().settings(options.firestoreSettings);
+    if (firestoreSettings != null) {
+      app.firestore().settings( {
+        ...options.firestoreSettings
+      })
     }
 
     return app;
@@ -57,35 +61,36 @@ export class FirebaseAdminCoreModule {
   }
 
   private static createProviders(app: admin.app.App): Provider<any>[] {
-    return PROVIDERS.map<Provider>((ProviderService) => ({
-      provide: ProviderService,
-      useFactory: () => new ProviderService(app),
+    return PROVIDERS.map<Provider>((providerService) => ({
+      provide: providerService,
+      useFactory: () => new providerService(app),
     }));
   }
 
   static forRootAsync(options: FirebaseAdminModuleAsyncOptions): DynamicModule {
-    const firebaseAdminModuleOptions = {
+    const firebaseAdminModuleOptions: Provider<any> = {
       provide: FIREBASE_ADMIN_MODULE_OPTIONS,
-      useFactory: options.useFactory,
+      useFactory: options.useFactory as any,
       inject: options.inject || [],
     };
 
     const providers = this.createAsyncProviders();
 
-    return {
+    const module: DynamicModule = {
       module: FirebaseAdminCoreModule,
       imports: options.imports,
       providers: [firebaseAdminModuleOptions, ...providers],
       exports: [...EXPORTS],
     };
+    return module
   }
 
   private static createAsyncProviders(): Provider<any>[] {
-    return PROVIDERS.map<Provider>((ProviderService) => ({
-      provide: ProviderService,
+    return PROVIDERS.map<Provider>((providerService) => ({
+      provide: providerService,
       useFactory: (options: FirebaseAdminModuleOptions) => {
         const app = getAppOrInitialize(options);
-        return new ProviderService(app);
+        return new providerService(app);
       },
       inject: [FIREBASE_ADMIN_MODULE_OPTIONS],
     }));
