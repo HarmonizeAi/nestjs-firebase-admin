@@ -11,5 +11,4 @@ export class FirebaseStorageService {
     }
     return this.app.storage();
   }
-
 }

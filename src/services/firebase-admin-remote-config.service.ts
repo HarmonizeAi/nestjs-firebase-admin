@@ -11,5 +11,4 @@ export class FirebaseRemoteConfigService {
     }
     return this.app.remoteConfig();
   }
-
 }

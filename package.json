@@ -28,7 +28,6 @@
   "scripts": {
     "test": "jest",
     "test:dev": "jest --watch",
-    "precommit": "lint-staged",
     "prettier": "prettier src/**/*.ts --write && git status",
     "clean": "rimraf dist",
     "build": "rimraf dist && npm run build:lib && npm test",

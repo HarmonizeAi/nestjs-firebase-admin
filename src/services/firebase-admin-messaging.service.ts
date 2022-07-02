@@ -11,5 +11,4 @@ export class FirebaseMessagingService {
     }
     return this.app.messaging();
   }
-
 }

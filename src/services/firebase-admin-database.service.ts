@@ -12,5 +12,4 @@ export class FirebaseDatabaseService {
     }
     return this.app.database();
   }
-
 }
