@@ -1,4 +1,4 @@
-name: h7z-zod-firebase deploy
+name: nestjs-firebase-admin deploy
 
 on: [push]
 
