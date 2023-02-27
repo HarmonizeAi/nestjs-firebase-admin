@@ -1,6 +1,6 @@
 {
   "name": "@harmonizeai/nestjs-firebase-admin",
-  "version": "9.1.0",
+  "version": "9.3.0",
   "description": "Firebase Admin module for Nest framework (forked from Aginix/nestjs-firebase-admin)",
   "authors": [
     {
