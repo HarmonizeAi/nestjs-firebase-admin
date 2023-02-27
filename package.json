@@ -37,7 +37,8 @@
     "prepublish:next": "npm run build",
     "publish:next": "npm publish --access public --tag next",
     "prepare": "husky install",
-    "check:all": "lint-staged && npm run test && npm audit --audit-level=critical"
+    "check:all": "lint-staged && npm run test && npm audit --audit-level=critical",
+    "release:release": "semantic-release"
   },
   "peerDependencies": {
     "@nestjs/common": "^9.3.0",
@@ -46,7 +47,17 @@
   "dependencies": {
     "firebase-admin": "^11.5.0"
   },
+  "volta": {
+    "node": "18.14.0",
+    "npm": "9.3.1"
+  },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/github": "^8.0.4",
+    "@semantic-release/npm": "^9.0.1",
+    "@semantic-release/release-notes-generator": "^10.0.3",
+    "semantic-release": "^20.1.0",
     "@nestjs/testing": "^9.3.9",
     "@types/jest": "^29.4.0",
     "@types/node": "16.0.0",
